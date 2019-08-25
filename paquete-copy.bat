@@ -156,7 +156,7 @@ start notepad.exe temp06.txt
 start notepad.exe temp07.txt
 start notepad.exe registro.log
 echo Generando Informe. [Generado]
-rem eliminado todas variables
+rem eliminado todas variables antes de salir
 set tmp70=
 set tmp71=
 set tmp69=
