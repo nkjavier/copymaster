@@ -64,7 +64,6 @@ if %errorlevel% equ 0 echo %lista3% >>redout2.txt
  goto contaras
   :contaras
    rem Aca empieza todo
-rem --------------------------------------------------------
 rem ---------------------------------------------------------
 rem Aca se cuenta las lineas
 rem -------------------------------------------------------
