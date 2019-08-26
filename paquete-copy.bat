@@ -1,6 +1,6 @@
 @echo off
 color
-rem preparao el archivo para hacer la tareas
+rem preparo el archivo para hacer la tareas
 set arranque=%time% - %date%
 echo %date% %time% >to.txt
 rem -----------------
