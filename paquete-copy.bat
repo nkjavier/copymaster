@@ -1,6 +1,9 @@
 @echo off
 color
-rem preparo el archivo para hacer la tareas
+rem Genero si no existe el archivo f.txt que tomara para cargar la listas de pc de destino
+if not exist f.txt echo PCS Aqui... >f.txt
+if exist f.txt notepad f.txt
+rem preparao el archivo para hacer la tareas
 set arranque=%time% - %date%
 echo %date% %time% >to.txt
 rem -----------------
@@ -21,7 +24,7 @@ rem donde F.txt es donde estan el listado de las pcs
 type f.txt | find /v /c "" >fbeta.txt
 FOR /F "tokens=*" %%A IN (fbeta.txt) DO set tmp69=%%A
 rem -------------
-rem Verificando el estado de las pcs en red...
+rem Verificando el estado de las pcs en red
 FOR /F "eol=;" %%i in (f.txt) do call :llamo0 %%i
 goto pc-sinred
 :llamo0 %1
@@ -32,7 +35,7 @@ goto pc-sinred
  echo.
  type logopc.txt
    echo                          %lista%
- ping -n 1 %lista% | find /I "TTL" >temp01.txt
+ ping -n 1 %lista% | find /I "TTL" >temp01.txt 
  rem pcs sin red aca
  If %errorlevel% neq 0 Echo %lista% >>temp02.txt
 rem pcs con red aca
@@ -51,11 +54,11 @@ goto contaras
  echo.
  type logopc1.txt
     echo                          %lista3%
- rem ping -n 1 %lista3% | find /I "Tiemp" >tempa.txt
+ rem ping -n 1 %lista3% | find /I "Tiemp" >tempa.txt 
  ping -n 1 %lista3% >tempa.txt
  rem pcs sin red que ya sabemos que existen
  rem pcs sin red, pero que no responde a Tiempo de espera agotado para esta solicitud.
- type tempa.txt | find /i "Tiempo"
+ type tempa.txt | find /i "Tiempo" 
 if %errorlevel% equ 0 echo %lista3% >>redout1.txt
 rem si no existe la pc fisica o mal el nombre -------------
 type tempa.txt | find /i "La solicitud de ping"
@@ -64,6 +67,7 @@ if %errorlevel% equ 0 echo %lista3% >>redout2.txt
  goto contaras
   :contaras
    rem Aca empieza todo
+rem --------------------------------------------------------
 rem ---------------------------------------------------------
 rem Aca se cuenta las lineas
 rem -------------------------------------------------------
@@ -78,10 +82,10 @@ set numeroA=1
 set numeroB=0
 rem -------------------------------------------------------
 goto enred
-:enred
+:enred 
 FOR /F "eol=;" %%g in (temp03.txt) do call :llamo2 %%g
-goto fin
-:llamo2 %1
+goto fin 
+:llamo2 %1 
  set lista2=%1
  rem Aca esta el contador de numero
  set /a numeroB=%numeroA%+1
@@ -117,7 +121,7 @@ if exist \\%lista2%\c$\usuario\to.txt echo Archivo en Destino se copio correctam
 if not exist \\%lista2%\c$\usuario\to.txt echo Archivo en Destino no se copio o fallo >>registro.log
 echo --------------- >>registro.log
 rem //////////////////////////////////
-goto :eof
+goto :eof 
 goto fin
 :fin
 cls
@@ -133,8 +137,8 @@ echo Total de Pcs Cargadas %tmp69%
 echo Total de Pcs Fuera de linea %tmp71%
 echo Total de Pcs en linea %tmp70%
 echo -----------------------------------------------
-echo Iniciado a las %arranque%
-echo finalizado a las %time% %date%
+echo Iniciado a las %arranque% 
+echo finalizado a las %time% %date% 
 echo -----------------------------------------------
 rem tareas finales
 echo.
@@ -156,7 +160,7 @@ start notepad.exe temp06.txt
 start notepad.exe temp07.txt
 start notepad.exe registro.log
 echo Generando Informe. [Generado]
-rem eliminado todas variables antes de salir
+rem eliminado todas variables
 set tmp70=
 set tmp71=
 set tmp69=
@@ -175,3 +179,9 @@ set pp1=
 set pp2=
 set pp3=
 set pp4=
+
+
+
+
+
+
